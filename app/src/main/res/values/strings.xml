@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Space DIM</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ton_nom_d_astronaute">Ton nom d\'astronaute</string>
+    <string name="bouton_creation_de_lobby">Bouton création de lobby</string>
+    <string name="space_dim">Space DIM</string>
 </resources>
