@@ -13,6 +13,7 @@ class Game : AppCompatActivity() {
         buttonWin.setOnClickListener {
             startActivity(Intent(this, Win::class.java))
         }
+        //test de pull
         var buttonLose = findViewById<Button>(R.id.buttonLose)
         buttonLose.setOnClickListener {
             startActivity(Intent(this, Lose::class.java))
