@@ -5,4 +5,8 @@
     <string name="ton_nom_d_astronaute">Ton nom d\'astronaute</string>
     <string name="bouton_creation_de_lobby">Bouton création de lobby</string>
     <string name="space_dim">Space DIM</string>
+    <string name="serveur">Serveur :</string>
+    <string name="entrer_dans_un_lobby">Entrer dans un lobby</string>
+    <string name="aucun_lobby_rejoint">Aucun lobby rejoint</string>
+    <string name="entrez_le_nom_d_un_lobby_pour_y_acceder_ou_le_creer">Entrez le nom d\'un lobby pour y accéder ou le créer...</string>
 </resources>
