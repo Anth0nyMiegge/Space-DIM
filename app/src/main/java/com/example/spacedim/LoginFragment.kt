@@ -12,12 +12,6 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        /* val buttonLobby = findViewById<ImageButton>(R.id.buttonLobby)
-        buttonLobby.setOnClickListener {
-            startActivity(Intent(this, Lobby::class.java))
-        }
-        */
-
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 }
