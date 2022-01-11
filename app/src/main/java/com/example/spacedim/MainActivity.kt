@@ -10,6 +10,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //Test branche
         var buttonLobby = findViewById<ImageButton>(R.id.buttonLobby)
         buttonLobby.setOnClickListener {
             startActivity(Intent(this, Lobby::class.java))
