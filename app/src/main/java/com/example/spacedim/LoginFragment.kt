@@ -1,18 +1,15 @@
 package com.example.spacedim
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
+import androidx.navigation.findNavController
+import com.example.spacedim.databinding.FragmentLoginBinding
 import okhttp3.*
 import java.io.IOException
 import okhttp3.RequestBody
-
 
 /*
 Structure user :
@@ -26,24 +23,32 @@ Structure user :
 */
 
 class LoginFragment : Fragment() {
+
+    private var _binding: FragmentLoginBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val v = inflater.inflate(R.layout.fragment_login, container, false)
-        var editTextTextPersonName = v.findViewById<EditText>(R.id.editTextTextPersonName)
-        var buttonLobby = v.findViewById<ImageButton>(R.id.buttonLobby)
+    ): View {
+
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+
+        val buttonLobby = binding.buttonLobby
+        val editTextTextPersonName = binding.editTextTextPersonName
+
         buttonLobby.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.login_to_lobby)
             val body: RequestBody = RequestBody.create(
-                MediaType.parse("application/json"), "{\"name\":\""+ editTextTextPersonName.text +"\"}"
+                MediaType.parse("application/json"),
+                "{\"name\":\"" + editTextTextPersonName.text + "\"}"
             )
-            println("{\"name\":"+ editTextTextPersonName.text +"}")
+            println("{\"name\":" + editTextTextPersonName.text + "}")
             post(baseLink + "api/user/register", body)
         }
-        return v
-    }
 
+        return binding.root
+    }
     private val client = OkHttpClient()
     private val baseLink = "https://spacedim.async-agency.com/"
 
@@ -68,5 +73,10 @@ class LoginFragment : Fragment() {
             override fun onFailure(call: Call, e: IOException) {}
             override fun onResponse(call: Call, response: Response) = println(response.body()?.string())
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
