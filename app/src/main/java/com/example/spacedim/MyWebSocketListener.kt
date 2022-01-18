@@ -1,42 +1,48 @@
 package com.example.spacedim
 
+import androidx.activity.viewModels
 import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 
 import okio.ByteString
 
- class MyWebSocketListener(var myCallback: (result: String?) -> Unit) : WebSocketListener( ) {
+ class MyWebSocketListener() : WebSocketListener( ) {
     private val NORMAL_CLOSURE_STATUS = 1000;
+     private val model: LobbyViewModel = LobbyViewModel()
 
-    override fun onOpen(webSocket: WebSocket, response: Response?) {
-        myCallback.invoke("Connexion REUSSI")
+     override fun onOpen(webSocket: WebSocket, response: Response?) {
+        /*myCallback.invoke("Connexion REUSSI")
         webSocket.send("Hello, it's SSaurel !")
         webSocket.send("What's up ?")
         webSocket.send(ByteString.decodeHex("deadbeef"))
-        //webSocket.close(NORMAL_CLOSURE_STATUS, "Goodbye !")
+        //webSocket.close(NORMAL_CLOSURE_STATUS, "Goodbye !")*/
+         model.socketStatut.postValue(true);
     }
 
     override fun onMessage(webSocket: WebSocket?, text: String) {
-        myCallback("Receiving : $text")
+        // TODO: 1/18/2022 create parser suivant le contenu
+        println("Message reçu$text");
     }
 
     override fun onMessage(webSocket: WebSocket?, bytes: ByteString) {
-        myCallback("Receiving bytes : " + bytes.hex())
+        println("Receiving bytes : " + bytes.hex())
     }
 
     override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
         webSocket.close(NORMAL_CLOSURE_STATUS, null)
-        myCallback("Closing : $code / $reason")
+        println("Closing : $code / $reason")
+        model.socketStatut.postValue(false);
     }
 
     override fun onFailure(webSocket: WebSocket?, t: Throwable, response: Response?) {
-        myCallback("Error : " + t.message)
+        println("Error : " + t.message)
+        model.socketStatut.postValue(false);
     }
 
 
-
 }
+
 
 class SocketAbortedException : Exception()
 
