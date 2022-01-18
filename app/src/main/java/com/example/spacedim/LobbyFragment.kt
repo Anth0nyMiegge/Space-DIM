@@ -1,13 +1,17 @@
 package com.example.spacedim
 
 import android.os.Bundle
+import android.os.Debug
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import okhttp3.OkHttpClient
 import com.example.spacedim.databinding.FragmentLobbyBinding
 
 class LobbyFragment : Fragment() {
+
+    var modelLobby:LobbyViewModel = LobbyViewModel();
 
     private var _binding: FragmentLobbyBinding? = null
     private val binding get() = _binding!!
@@ -16,6 +20,16 @@ class LobbyFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        var lobby:LobbyClass = LobbyClass()
+        lobby.join("room",1, OkHttpClient())
+        modelLobby.lobby.setValue(lobby);
+
+
+        //DEBUG
+        // TODO: 1/18/2022 Delete this thing when we have onclick ready.
+        //send ready action to web socket
+        modelLobby.lobby.value?.setReady(true);
+        //\DEBUG
         val lobbyJoinedFragment = LobbyJoinedFragment()
         addChildFragment(lobbyJoinedFragment, R.id.fragment_container)
 
