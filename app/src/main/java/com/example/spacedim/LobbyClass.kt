@@ -14,8 +14,6 @@ class LobbyClass {
 
     // can join a lobby with it's name
     fun join ( name:String, userId:Int, client: OkHttpClient) {
-        // TODO: 1/17/2022 make lobby join
-
         val request: Request = Request.Builder().url("ws://spacedim.async-agency.com:8081/ws/join/$name/$userId").build();
         val listener:MyWebSocketListener  = MyWebSocketListener();
         this.ws = client.newWebSocket(request, listener);
@@ -26,7 +24,6 @@ class LobbyClass {
     fun setReady(ready:Boolean){
         // TODO: 1/18/2022 send ready or not ready
         this.ws.send("{\"type\":\"READY\", \"value\":true}");
-
 
     }
 
