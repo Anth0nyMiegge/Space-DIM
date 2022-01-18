@@ -39,40 +39,14 @@ class LoginFragment : Fragment() {
 
         buttonLobby.setOnClickListener {
             view?.findNavController()?.navigate(R.id.login_to_lobby)
-            val body: RequestBody = RequestBody.create(
-                MediaType.parse("application/json"),
-                "{\"name\":\"" + editTextTextPersonName.text + "\"}"
-            )
+//            val body: RequestBody = RequestBody.create(
+//                MediaType.parse("application/json"), "{\"name\":\"" + editTextTextPersonName.text + "\"}"
+//            )
             println("{\"name\":" + editTextTextPersonName.text + "}")
-            post(baseLink + "api/user/register", body)
+        //  Appel user/register
         }
 
         return binding.root
-    }
-    private val client = OkHttpClient()
-    private val baseLink = "https://spacedim.async-agency.com/"
-
-    private fun get(url: String) {
-        val request = Request.Builder()
-            .url(url)
-            .build()
-
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {}
-            override fun onResponse(call: Call, response: Response) = println(response.body()?.string())
-        })
-    }
-
-    private fun post(url: String, body: RequestBody) {
-        val request = Request.Builder()
-            .url(url)
-            .post(body)
-            .build()
-
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {}
-            override fun onResponse(call: Call, response: Response) = println(response.body()?.string())
-        })
     }
 
     override fun onDestroy() {
