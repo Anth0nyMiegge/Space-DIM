@@ -10,6 +10,7 @@ import okio.ByteString
     private val NORMAL_CLOSURE_STATUS = 1000;
 
     override fun onOpen(webSocket: WebSocket, response: Response?) {
+        myCallback.invoke("Connexion REUSSI")
         webSocket.send("Hello, it's SSaurel !")
         webSocket.send("What's up ?")
         webSocket.send(ByteString.decodeHex("deadbeef"))
@@ -17,20 +18,20 @@ import okio.ByteString
     }
 
     override fun onMessage(webSocket: WebSocket?, text: String) {
-        myCallback.invoke("Receiving : $text")
+        myCallback("Receiving : $text")
     }
 
     override fun onMessage(webSocket: WebSocket?, bytes: ByteString) {
-        myCallback.invoke("Receiving bytes : " + bytes.hex())
+        myCallback("Receiving bytes : " + bytes.hex())
     }
 
     override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
         webSocket.close(NORMAL_CLOSURE_STATUS, null)
-        myCallback.invoke("Closing : $code / $reason")
+        myCallback("Closing : $code / $reason")
     }
 
     override fun onFailure(webSocket: WebSocket?, t: Throwable, response: Response?) {
-        myCallback.invoke("Error : " + t.message)
+        myCallback("Error : " + t.message)
     }
 
 

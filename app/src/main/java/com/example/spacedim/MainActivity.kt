@@ -22,6 +22,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+
         println("localoca");
 
         var client = OkHttpClient();
@@ -38,20 +43,21 @@ class MainActivity : AppCompatActivity() {
         
 
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
 
     }
     private fun registrer(result:String){
         println(result);
     }
     private fun start(client:OkHttpClient) {
-        var request:Request = Request.Builder().url("ws://echo.websocket.org").build();
+        var request:Request = Request.Builder().url("ws://spacedim.async-agency.com:8081/ws/join/fgh/1").build();
         var listener:MyWebSocketListener  = MyWebSocketListener{ result: String? ->
-            println(result);
+            println("##########################");
+            println("        $result");
+            println("##########################");
         };
         var ws:WebSocket = client.newWebSocket(request, listener);
-        client.dispatcher().executorService().shutdown();
+        //client.dispatcher().executorService().shutdown();
     }
 
 }
