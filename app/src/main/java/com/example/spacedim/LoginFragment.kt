@@ -7,9 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.example.spacedim.databinding.FragmentLoginBinding
-import okhttp3.*
-import java.io.IOException
-import okhttp3.RequestBody
 
 /*
 Structure user :
@@ -24,6 +21,7 @@ Structure user :
 
 class LoginFragment : Fragment() {
 
+    val mod = OverviewViewModel()
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
@@ -36,14 +34,11 @@ class LoginFragment : Fragment() {
 
         val buttonLobby = binding.buttonLobby
         val editTextTextPersonName = binding.editTextTextPersonName
-
+        val nickname = editTextTextPersonName.text
         buttonLobby.setOnClickListener {
             view?.findNavController()?.navigate(R.id.login_to_lobby)
-//            val body: RequestBody = RequestBody.create(
-//                MediaType.parse("application/json"), "{\"name\":\"" + editTextTextPersonName.text + "\"}"
-//            )
-            println("{\"name\":" + editTextTextPersonName.text + "}")
-        //  Appel user/register
+            mod.registerNewUser(nickname.toString())
+            println(mod.response.value)
         }
 
         return binding.root
