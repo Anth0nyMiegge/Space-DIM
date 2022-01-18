@@ -23,26 +23,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
 
-
-        val client = OkHttpClient();
-        var ws = connectTolobby(client,"nameoflobby",1);
-
-
     }
 
-    private fun connectTolobby(client:OkHttpClient, lobbyName:String, userid:Int): WebSocket {
-        val request:Request = Request.Builder().url("ws://spacedim.async-agency.com:8081/ws/join/$lobbyName/$userid").build();
-        val listener:MyWebSocketListener  = MyWebSocketListener();
-        val ws:WebSocket = client.newWebSocket(request, listener);
-        return ws;
-        //client.dispatcher().executorService().shutdown();
-    }
 
 }

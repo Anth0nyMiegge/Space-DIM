@@ -6,13 +6,11 @@ import androidx.lifecycle.ViewModel
 class LobbyViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 
-    // Create a LiveData with a String
-    val lobbyName: MutableLiveData<String> by lazy {
-        MutableLiveData<String>()
+    // Create a LiveData with a Class
+    val lobby: MutableLiveData<LobbyClass> by lazy{
+        MutableLiveData<LobbyClass>()
     }
-    val socketStatut: MutableLiveData<Boolean> by lazy{
-        MutableLiveData<Boolean>()
-    }
+
 
 
 
