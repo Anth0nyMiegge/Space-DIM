@@ -18,11 +18,11 @@ class WinFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val buttonMenu = binding.buttonMenu
-
-        buttonMenu.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.win_to_login)
-        }
+//        val buttonMenu = binding.buttonMenu
+//
+//        buttonMenu.setOnClickListener {
+//            view?.findNavController()?.navigate(R.id.win_to_login)
+//        }
 
         _binding = FragmentWinBinding.inflate(inflater, container, false)
         return binding.root

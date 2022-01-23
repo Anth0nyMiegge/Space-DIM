@@ -18,11 +18,11 @@ class LoseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val buttonMenu = binding.buttonMenu
-
-        buttonMenu.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.lose_to_login)
-        }
+//        val buttonMenu = binding.buttonToMenu
+//
+//        buttonMenu.setOnClickListener {
+//            view?.findNavController()?.navigate(R.id.lose_to_login)
+//        }
 
         _binding = FragmentLoseBinding.inflate(inflater, container, false)
         return binding.root

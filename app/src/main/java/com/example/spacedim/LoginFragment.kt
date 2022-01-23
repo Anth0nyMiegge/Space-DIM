@@ -43,7 +43,7 @@ class LoginFragment : Fragment() {
 //                MediaType.parse("application/json"), "{\"name\":\"" + editTextTextPersonName.text + "\"}"
 //            )
             println("{\"name\":" + editTextTextPersonName.text + "}")
-        //  Appel user/register
+            //  Appel user/register
         }
 
         return binding.root

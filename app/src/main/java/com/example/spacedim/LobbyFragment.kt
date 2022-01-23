@@ -11,15 +11,18 @@ import com.example.spacedim.databinding.FragmentLobbyBinding
 
 class LobbyFragment : Fragment() {
 
-    private var modelLobby:LobbyViewModel = LobbyViewModel()
-
     private var _binding: FragmentLobbyBinding? = null
     private val binding get() = _binding!!
+
+    private var modelLobby:LobbyViewModel = LobbyViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        _binding = FragmentLobbyBinding.inflate(inflater, container, false)
+
         val lobby:LobbyClass = LobbyClass()
         lobby.join("room",1, OkHttpClient())
         modelLobby.lobby.value = lobby
@@ -39,8 +42,6 @@ class LobbyFragment : Fragment() {
         buttonJoinLobby.setOnClickListener {
             view?.findNavController()?.navigate(R.id.lobbyToGame)
         }
-
-        _binding = FragmentLobbyBinding.inflate(inflater, container, false)
 
         return binding.root
     }

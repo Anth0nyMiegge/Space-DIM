@@ -17,6 +17,9 @@ class GameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        _binding = FragmentGameBinding.inflate(inflater, container, false)
+
         val buttonWin = binding.buttonWin
         val buttonLose = binding.buttonLose
 
@@ -27,7 +30,6 @@ class GameFragment : Fragment() {
         buttonLose.setOnClickListener {
             view?.findNavController()?.navigate(R.id.game_to_lose)
         }
-        _binding = FragmentGameBinding.inflate(inflater, container, false)
         return binding.root
     }
     override fun onDestroy() {
