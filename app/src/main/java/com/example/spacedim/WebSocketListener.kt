@@ -1,46 +1,40 @@
 package com.example.spacedim
 
-import androidx.activity.viewModels
 import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
-
 import okio.ByteString
 
- class MyWebSocketListener() : WebSocketListener( ) {
-    private val NORMAL_CLOSURE_STATUS = 1000;
+class WebSocketListenerCustom() : WebSocketListener() {
+    private val NORMAL_CLOSURE_STATUS = 1000
 
+    /* Fonction stipulant ce qui doit être effectué à l'ouverture du socket */
+    override fun onOpen(webSocket: WebSocket, response: Response?) {}
 
-     override fun onOpen(webSocket: WebSocket, response: Response?) {
-        /*myCallback.invoke("Connexion REUSSI")
-        webSocket.send("Hello, it's SSaurel !")
-        webSocket.send("What's up ?")
-        webSocket.send(ByteString.decodeHex("deadbeef"))
-        //webSocket.close(NORMAL_CLOSURE_STATUS, "Goodbye !")*/
-
-    }
-
+    /* Fonction stipulant ce qui doit être effectué à la réception d'un message par le socket (si le message est de type String) */
     override fun onMessage(webSocket: WebSocket?, text: String) {
         // TODO: 1/18/2022 create parser suivant le contenu
-        println("Message reçu $text");
+        println("Message reçu : $text")
     }
 
+    /* Fonction stipulant ce qui doit être effectué à la réception d'un message par le socket (si le message est de type ByteString) */
     override fun onMessage(webSocket: WebSocket?, bytes: ByteString) {
         println("Receiving bytes : " + bytes.hex())
     }
 
+    /* Fonction stipulant ce qui doit être effectué à la fermeture du socket */
     override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
         webSocket.close(NORMAL_CLOSURE_STATUS, null)
         println("Closing : $code / $reason")
     }
 
+    /* Fonction stipulant ce qui doit être effectué à la réception d'une erreur du socket */
     override fun onFailure(webSocket: WebSocket?, t: Throwable, response: Response?) {
         println("Error : " + t.message)
     }
 
 
 }
-
 
 class SocketAbortedException : Exception()
 

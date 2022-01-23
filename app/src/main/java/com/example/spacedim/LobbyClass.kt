@@ -14,7 +14,7 @@ class LobbyClass {
     /* Rejoindre un lobby avec son nom, et l'id de l'utilisateur le rejoignant */
     fun join ( name:String, userId:Int, client: OkHttpClient) {
         val request: Request = Request.Builder().url("ws://spacedim.async-agency.com:8081/ws/join/$name/$userId").build()
-        val listener = MyWebSocketListener()
+        val listener = WebSocketListenerCustom()
         this.ws = client.newWebSocket(request, listener)
     }
 
