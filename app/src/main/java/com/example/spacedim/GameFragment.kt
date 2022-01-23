@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.example.spacedim.databinding.FragmentGameBinding
 
+/* Pour l'instant, simple transformation du TP Noël de Anthony en fragment */
 class GameFragment : Fragment() {
 
     private var _binding: FragmentGameBinding? = null
@@ -23,15 +24,19 @@ class GameFragment : Fragment() {
         val buttonWin = binding.buttonWin
         val buttonLose = binding.buttonLose
 
+        /* Listener sur le bouton pour gagner */
         buttonWin.setOnClickListener {
             view?.findNavController()?.navigate(R.id.game_to_win)
         }
 
+        /* Listener sur le bouton pour perdre */
         buttonLose.setOnClickListener {
             view?.findNavController()?.navigate(R.id.game_to_lose)
         }
+
         return binding.root
     }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

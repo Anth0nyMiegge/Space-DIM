@@ -1,5 +1,6 @@
 package com.example.spacedim
 
+/* Classe non-utilisée car nous n'avons pas pu implémenter le système de jeu */
 sealed class Event(val type: EventType) {
     data class NextAction(val action: Action) : Event(EventType.NEXT_ACTION)
     data class GameStarted(val uiElementList: List<UIElement>): Event(EventType.GAME_STARTED)
