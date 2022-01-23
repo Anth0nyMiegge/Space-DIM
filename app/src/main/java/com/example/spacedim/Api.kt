@@ -1,5 +1,7 @@
 package com.example.spacedim
 
+import android.content.Context
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import androidx.lifecycle.LiveData

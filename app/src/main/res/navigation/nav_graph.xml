@@ -18,5 +18,39 @@
         android:id="@+id/lobbyFragment"
         android:name="com.example.spacedim.LobbyFragment"
         android:label="fragment_lobby"
-        tools:layout="@layout/fragment_lobby" />
+        tools:layout="@layout/fragment_lobby" >
+        <action
+            android:id="@+id/lobbyToGame"
+            app:destination="@id/gameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.example.spacedim.GameFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" >
+        <action
+            android:id="@+id/game_to_win"
+            app:destination="@id/winFragment" />
+        <action
+            android:id="@+id/action_gameFragment_to_loseFragment"
+            app:destination="@id/game_to_lose" />
+    </fragment>
+    <fragment
+        android:id="@+id/winFragment"
+        android:name="com.example.spacedim.WinFragment"
+        android:label="fragment_win"
+        tools:layout="@layout/fragment_win" >
+        <action
+            android:id="@+id/win_to_login"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/game_to_lose"
+        android:name="com.example.spacedim.LoseFragment"
+        android:label="fragment_lose"
+        tools:layout="@layout/fragment_lose" >
+        <action
+            android:id="@+id/lose_to_login"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>
