@@ -20,7 +20,8 @@ class LobbyFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val lobby:LobbyClass = LobbyClass()
+        val lobby = LobbyClass()
+        val buttonJoinLobby = binding.buttonJoinLobby
         lobby.join("room",1, OkHttpClient())
         modelLobby.lobby.value = lobby
         // TODO: 1/23/2022 Parse with true username and room name
@@ -35,7 +36,6 @@ class LobbyFragment : Fragment() {
         val lobbyJoinedFragment = LobbyJoinedFragment()
         addChildFragment(lobbyJoinedFragment, R.id.fragment_container)
 
-        val buttonJoinLobby = binding.buttonJoinLobby
 
         buttonJoinLobby.setOnClickListener {
             view?.findNavController()?.navigate(R.id.lobbyToGame)

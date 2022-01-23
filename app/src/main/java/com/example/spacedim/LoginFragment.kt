@@ -8,20 +8,10 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.example.spacedim.databinding.FragmentLoginBinding
 
-/*
-Structure user :
-{
-    "id" : 124,
-    "name" : "zinedine",
-    "avatar" : "http://spacedim.async-agency.com/static/avatar/maya.png",
-    "score" : 0,
-    "state" : "OVER"
-}
-*/
 
 class LoginFragment : Fragment() {
 
-    val mod = OverviewViewModel()
+    private val mod = OverviewViewModel()
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 

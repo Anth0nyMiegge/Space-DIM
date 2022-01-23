@@ -16,6 +16,7 @@ import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.POST
 
 val baseLink = "https://spacedim.async-agency.com/"
@@ -26,6 +27,7 @@ val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .baseUrl(baseLink)
     .build()
+
 interface UsersApiService {
     @GET("api/users")
     suspend fun getUsers(): List<User>
@@ -34,7 +36,7 @@ interface UsersApiService {
     @GET("api/user/{id}")
     suspend fun getUserById(id: Int): User
     @POST("api/user/register")
-    suspend fun registerNewUser(userPost: UserPost): Response<UserPost>
+    suspend fun registerNewUser(@Body userPost: UserPost): Response<UserPost>
 }
 object UsersApi {
     val retrofitService : UsersApiService by lazy {
@@ -99,11 +101,23 @@ class OverviewViewModel : ViewModel() {
                 val result = UsersApi.retrofitService.registerNewUser(userPost)
                 _response.value = "Successfuly registered"
                 println(_response.value)
+                println(result)
+                println(userPost)
                 status = true
             } catch (e: Exception) {
                 _response.value = "Registration failed"
                 println(_response.value)
+                println(e.message)
                 status = false
+            }
+        }
+        if (!status) {
+            viewModelScope.launch {
+                try {
+                    UsersApi.retrofitService.getUserByName(userPost.name)
+                } catch (e: Exception) {
+                    println("Unknown error : " + e.message)
+                }
             }
         }
     }
