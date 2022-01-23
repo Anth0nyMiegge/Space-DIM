@@ -9,3 +9,5 @@ data class User(val id: Int,
 enum class State(val value: Int) {
     WAITING(0), READY(1), IN_GAME(2), OVER(3)
 }
+
+data class UserPost(val name: String)

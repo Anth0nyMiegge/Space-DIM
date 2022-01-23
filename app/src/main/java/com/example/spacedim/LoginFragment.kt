@@ -35,10 +35,10 @@ class LoginFragment : Fragment() {
         val buttonLobby = binding.buttonLobby
         val editTextTextPersonName = binding.editTextTextPersonName
         val nickname = editTextTextPersonName.text
+        val userpost = UserPost(nickname.toString())
         buttonLobby.setOnClickListener {
             view?.findNavController()?.navigate(R.id.login_to_lobby)
-            mod.registerNewUser(nickname.toString())
-            println(mod.response.value)
+            mod.registerNewUser(userpost)
         }
 
         return binding.root

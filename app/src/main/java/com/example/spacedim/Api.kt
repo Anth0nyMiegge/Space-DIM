@@ -32,7 +32,7 @@ interface UsersApiService {
     @GET("api/user/{id}")
     suspend fun getUserById(id: Int): User
     @POST("api/user/register")
-    suspend fun registerNewUser(requestBody: RequestBody): Response<ResponseBody>
+    suspend fun registerNewUser(userPost: UserPost): Response<UserPost>
 }
 object UsersApi {
     val retrofitService : UsersApiService by lazy {
@@ -91,17 +91,16 @@ class OverviewViewModel : ViewModel() {
         }
     }
 
-    fun registerNewUser(name: String) {
-        val body: RequestBody = RequestBody.create(
-            MediaType.parse("application/json"), "{\"name\":\"$name\"}"
-        )
+    fun registerNewUser(userPost: UserPost) {
         viewModelScope.launch {
             try {
-                val result = UsersApi.retrofitService.registerNewUser(body)
+                val result = UsersApi.retrofitService.registerNewUser(userPost)
                 _response.value = "Successfuly registered"
+                println(_response.value)
                 status = true
             } catch (e: Exception) {
                 _response.value = "Registration failed"
+                println(_response.value)
                 status = false
             }
         }
