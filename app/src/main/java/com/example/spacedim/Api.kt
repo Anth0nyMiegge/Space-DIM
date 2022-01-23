@@ -1,5 +1,6 @@
 package com.example.spacedim
 
+import android.content.Context
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.http.GET
@@ -57,6 +58,7 @@ class OverviewViewModel : ViewModel() {
             try {
                 val result = UsersApi.retrofitService.getUserByName()
                 _response.value = "Success: user \"${result.name}\" retrieved"
+
             } catch (e: Exception) {
                 _response.value = "Failure: ${e.message}"
             }

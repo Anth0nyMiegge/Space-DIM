@@ -23,10 +23,11 @@ class LobbyFragment : Fragment() {
         val lobby:LobbyClass = LobbyClass()
         lobby.join("room",1, OkHttpClient())
         modelLobby.lobby.value = lobby
+        // TODO: 1/23/2022 Parse with true username and room name
 
 
         //DEBUG
-        // TODO: 1/18/2022 Delete this thing when we have onclick ready.
+        // TODO: 1/18/2022 Adapt this thing when we have onclick ready.
         //send ready action to web socket
         modelLobby.lobby.value?.setReady(true)
         //\DEBUG
