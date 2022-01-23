@@ -9,6 +9,7 @@ class LobbyClass {
     public lateinit var lobbyName:String ;
     public lateinit var userName:String ;
     public var userId:Int = 0;
+    public lateinit var listUser:List<User>;
 
     public lateinit var ws:WebSocket;
 
@@ -22,9 +23,10 @@ class LobbyClass {
 
 
     fun setReady(ready:Boolean){
-        // TODO: 1/18/2022 send ready or not ready
-        this.ws.send("{\"type\":\"READY\", \"value\":true}");
-
+        var value = "false";
+        if (ready)
+            value = "true";
+        this.ws.send("{\"type\":\"READY\", \"value\":$value}");
     }
 
 
