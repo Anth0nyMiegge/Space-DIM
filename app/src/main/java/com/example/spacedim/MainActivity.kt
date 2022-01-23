@@ -2,7 +2,6 @@ package com.example.spacedim
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
 import com.example.spacedim.databinding.ActivityMainBinding
 
 
@@ -16,6 +15,4 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
-
-
 }
