@@ -8,21 +8,12 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.example.spacedim.databinding.FragmentLoginBinding
 
-
-/*
-Structure user :
-{
-    "id" : 124,
-    "name" : "zinedine",
-    "avatar" : "http://spacedim.async-agency.com/static/avatar/maya.png",
-    "score" : 0,
-    "state" : "OVER"
-}
-*/
-
+/* Premier fragment visible : permet de se connecter avec un name */
 class LoginFragment : Fragment() {
 
+    /* Instantiation du ViewModel */
     private val mod = OverviewViewModel()
+
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
@@ -30,14 +21,18 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
 
+        /* Instantiation des éléments de la vue */
         val buttonLobby = binding.buttonLobby
         val editTextTextPersonName = binding.editTextTextPersonName
         val nickname = editTextTextPersonName.text
+
+        /* Instantiation du UserPost nécéssaire à la requête d'inscription */
         val userpost = UserPost(nickname.toString())
 
+        /* Listener pour passer sur l'écran suivant ET enregistrer/connecter l'utilisateur
+          (L'appel à la fonction de connection est située directement dans la fonction d'inscription)*/
         buttonLobby.setOnClickListener {
             view?.findNavController()?.navigate(R.id.login_to_lobby)
             mod.registerNewUser(userpost)

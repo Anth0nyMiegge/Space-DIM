@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.spacedim.databinding.FragmentLobbyJoinedBinding
 
+/* Fragment encore non-utilisé du lobby une fois rejoint */
 class LobbyJoinedFragment : Fragment() {
 
     private var _binding: FragmentLobbyJoinedBinding? = null
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,6 +21,7 @@ class LobbyJoinedFragment : Fragment() {
 
         return binding.root
     }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

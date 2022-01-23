@@ -4,15 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class LobbyViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
-
-    // Create a LiveData with a Class
+    /* Création d'une LiveData de classe LobbyClass */
     val lobby: MutableLiveData<LobbyClass> by lazy{
         MutableLiveData<LobbyClass>()
     }
-
-
-
-
-
 }
