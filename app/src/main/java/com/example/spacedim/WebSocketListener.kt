@@ -14,6 +14,8 @@ class WebSocketListenerCustom() : WebSocketListener() {
     /* Fonction stipulant ce qui doit être effectué à la réception d'un message par le socket (si le message est de type String) */
     override fun onMessage(webSocket: WebSocket?, text: String) {
         // TODO: 1/18/2022 create parser suivant le contenu
+        // Moshi
+        var event: EventType = EventType.WAITING_FOR_PLAYER
         println("Message reçu : $text")
     }
 

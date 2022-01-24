@@ -10,6 +10,8 @@ class LobbyClass {
     var userId:Int = 0
     lateinit var listUser:List<User>
     lateinit var ws:WebSocket
+    lateinit var user:User
+    lateinit var lastEvent:Event
 
     /* Rejoindre un lobby avec son nom, et l'id de l'utilisateur le rejoignant */
     fun join ( name:String, userId:Int, client: OkHttpClient) {
@@ -26,15 +28,9 @@ class LobbyClass {
         this.ws.send("{\"type\":\"READY\", \"value\":$value}")
     }
 
-    /* Fonction incomplete : obtenir tous les lobbys existants */
-    fun getAllLobby():String{
-        // TODO: 1/17/2022 get + parse list lobby
-        return "todo"
-    }
 
     /* Fonction incomplete : obtenir le statut du joueur connecté */
     fun getStatutPlayer():String {
-        var lobby = getStatutLobby();
         // TODO: 1/17/2022 parsing info player
         return "todo"
     }
